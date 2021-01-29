@@ -7,10 +7,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Install dependencies with npm'
-                bat 'npm install'
+                sh 'npm install'
 
                 echo 'Build with webpack'
-                bat 'npm run build'
+                sh 'npm run build'
             }
         }
         // stage('Test') {
