@@ -5,7 +5,7 @@ const {
 } = process.env;
 
 // To delete node_modules
-const nodeExternals = require('webpack-node-externals');
+// const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     entry: './src/index.ts',
@@ -28,5 +28,5 @@ module.exports = {
             }
         ]
     },
-    externals: [ nodeExternals() ]
+    // externals: [ nodeExternals() ]
 }
