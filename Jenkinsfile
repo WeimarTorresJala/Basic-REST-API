@@ -1,10 +1,10 @@
 pipeline {
     agent {
-        label 'Dell Windows'
+        label 'Ubuntu'
     }
 
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
                 echo 'Install dependencies with npm'
                 bat 'npm install'
@@ -13,5 +13,11 @@ pipeline {
                 bat 'npm run build'
             }
         }
+        // stage('Test') {
+        //     steps {
+        //         echo 'Publish with npm'
+        //         bat 'npm publish'
+        //     }
+        // }
     }
 }
