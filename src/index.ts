@@ -4,7 +4,7 @@ import express = require("express");
 const app: express.Application = express();
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello from express and typescript 1')
+    res.send('Hello from express and typescript')
 });
 
 const port = process.env.PORT || 3000;

@@ -9,7 +9,7 @@
     "build": "webpack"
   },
   "publishConfig": {
-    "registry": "http://192.168.0.25:8081/repository/basic-REST-API/"
+    "registry": "http://192.168.0.10:8081/repository/basic-REST-API/"
   },
   "files": [ "build" ],
   "author": "",
