@@ -4,6 +4,7 @@ const {
     NODE_ENV = 'production',
 } = process.env;
 
+// To delete node_modules
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {

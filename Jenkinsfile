@@ -13,11 +13,11 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        // stage('Test') {
-        //     steps {
-        //         echo 'Publish with npm'
-        //         bat 'npm publish'
-        //     }
-        // }
+        stage('Publish') {
+            steps {
+                echo 'Publish with npm'
+                sh 'npm publish'
+            }
+        }
     }
 }
