@@ -23,6 +23,9 @@ pipeline {
             agent {
                 label 'test'
             }
+            node {
+                checkout scm
+            }
             steps {
                 echo 'Install package from Nexus'
                 sh 'touch .npmrc'
