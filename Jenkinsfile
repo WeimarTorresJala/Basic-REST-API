@@ -29,7 +29,12 @@ pipeline {
             steps {
                 echo 'Install package from Nexus'
                 sh 'touch .npmrc'
-                sh 'pwd'
+                sh 'echo registry=http://192.168.56.102:8081/repository/basic-REST-API-group/ > .npmrc'
+                sh 'echo _authToken=NpmToken.d768fbd7-5b86-388d-9092-fdb558c0e850 >> .npmrc'
+                sh 'npm install basic-rest-api'
+                
+                echo 'Running...'
+                sh 'npm run start'
             }
         }
     }
