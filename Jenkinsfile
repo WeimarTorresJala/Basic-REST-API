@@ -7,8 +7,7 @@ pipeline {
             }
             steps {
                 sh 'touch .npmrc'
-                sh 'echo //192.168.56.102:8081/repository/basic-REST-API-hosted/ > .npmrc'
-                sh 'echo _authToken=NpmToken.4190ac5a-cee8-31c6-8306-3fa77fe31031 >> .npmrc'
+                sh 'echo //192.168.56.102:8081/repository/basic-REST-API-hosted/:_authToken=NpmToken.4190ac5a-cee8-31c6-8306-3fa77fe31031 > .npmrc'
 
                 echo 'Install dependencies with npm'
                 sh 'npm install'
@@ -38,8 +37,7 @@ pipeline {
                 sh 'npm install basic-rest-api'
                 
                 echo 'Running...'
-                sh 'cd node_modules/basic-rest-api'
-                sh 'npm run start'
+                sh 'cd node_modules/basic-rest-api && npm run start'
             }
         }
     }
