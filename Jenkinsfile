@@ -22,9 +22,9 @@ pipeline {
         stage('Test') {
             agent {
                 label 'test'
-            }
-            node {
-                checkout scm
+            }           
+            options {
+                skipDefaultCheckout true
             }
             steps {
                 echo 'Install package from Nexus'
