@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node build/index.js",
     "build": "webpack",
-    "test": "mocha -r ts-node/register test/**/*.test.ts"
+    "test": "mocha -r ts-node/register test/**/*.test.ts --exit"
   },
   "publishConfig": {
     "registry": "http://192.168.56.102:8081/repository/basic-REST-API-hosted/"
