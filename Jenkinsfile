@@ -27,6 +27,9 @@ pipeline {
         }
 
         stage('Test') {
+            agent {
+                label 'build'
+            }
             steps {
                 withGradle {
                     echo 'Run unit test'
