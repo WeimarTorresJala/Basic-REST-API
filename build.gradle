@@ -43,7 +43,7 @@ node {
     workDir = file("${project.projectDir}/.gradle/nodejs")
     
     // The directory where npm is installed (when a specific version is defined)
-    npmWorkDir = file("${project.projectDir}/.gradle/npm")
+    // npmWorkDir = file("${project.projectDir}/.gradle/npm")
     
     // The directory where yarn is installed (when a Yarn task is used)
     // yarnWorkDir = file("${project.projectDir}/.gradle/yarn")
@@ -63,7 +63,7 @@ node {
 task registry {
   doLast {
     File npmrc = file(System.properties['user.home'] + '/.npmrc')
-    npmrc << project.registryUrl + "\n"
+    npmrc < project.registryUrl + "\n"
     npmrc << "_authToken=" + project.authToken
   }
 }
