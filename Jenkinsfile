@@ -30,6 +30,9 @@ pipeline {
             agent {
                 label 'build'
             }
+            options {
+                skipDefaultCheckout true
+            }
             steps {
                 withGradle {
                     echo 'Publish with npm'
