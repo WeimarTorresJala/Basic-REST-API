@@ -63,7 +63,7 @@ node {
 task registry {
   doLast {
     File npmrc = file(System.properties['user.home'] + '/.npmrc')
-    npmrc < project.registryUrl + "\n"
+    npmrc << project.registryUrl + "\n"
     npmrc << "_authToken=" + project.authToken
   }
 }

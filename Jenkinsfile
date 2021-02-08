@@ -3,7 +3,7 @@ pipeline {
     agent none
 
     environment {
-        NEXUS_REGISTRY_URL = 'http://192.168.56.102:8081/repository/basic-REST-API-group/'
+        NEXUS_REGISTRY_URL = 'http://192.168.56.102:8081/repository/basic-REST-API-hosted/'
         NEXUS_AUTH_TOKEN   = credentials('basic-REST-API-group')
     }
 
