@@ -1,44 +1,59 @@
+/* groovylint-disable DuplicateStringLiteral */
 pipeline {
     agent none
+
+    environment {
+        NEXUS_REGISTRY_URL = 'http://192.168.56.102:8081/repository/basic-REST-API-group/'
+        NEXUS_AUTH_TOKEN   = credentials('basic-REST-API-group')
+    }
+
     stages {
         stage('Build') {
             agent {
                 label 'build'
             }
             steps {
-                sh 'touch .npmrc'
-                sh 'echo registry=http://192.168.56.102:8081/repository/basic-REST-API-hosted/:_authToken=NpmToken.4190ac5a-cee8-31c6-8306-3fa77fe31031 > .npmrc'
+                withGradle {
+                    echo 'Install node and registry nexus'
+                    sh './gradlew registry -PregistryUrl=$NEXUS_REGISTRY_URL -PauthToken=$NEXUS_AUTH_TOKEN'
 
-                echo 'Install dependencies with npm'
-                sh 'npm install'
+                    echo 'Install dependencies with npm'
+                    sh './gradlew nodeSetup npmInstall'
 
-                echo 'Run unit test'
-                sh 'npm run test'
-
-                echo 'Build with webpack'
-                sh 'npm run build'
-                
-                echo 'Publish with npm'
-                sh 'npm publish'
+                    echo 'Build with npm and webpack'
+                    sh './gradlew npm_run_build'
+                }
             }
         }
-        stage('Test') {
+
+        stage('Publish') {
             agent {
-                label 'test'
-            }           
-            options {
-                skipDefaultCheckout true
+                label 'build'
             }
             steps {
-                echo 'Install package from Nexus'
-                sh 'touch .npmrc'
-                sh 'echo registry=http://192.168.56.102:8081/repository/basic-REST-API-group/ > .npmrc'
-                sh 'echo _authToken=NpmToken.d768fbd7-5b86-388d-9092-fdb558c0e850 >> .npmrc'
-                sh 'npm install basic-rest-api'
-                
-                echo 'Running...'
-                sh 'cd node_modules/basic-rest-api && npm run start'
+                withGradle {
+                    echo 'Publish with npm'
+                    sh './gradlew npm_publish'
+                }
             }
         }
+        // stage('Test') {
+        //     agent {
+        //         label 'test'
+        //     }
+        //     options {
+        //         skipDefaultCheckout true
+        //     }
+        //     steps {
+        //         echo 'Install package from Nexus'
+        //         sh 'touch .npmrc'
+        //         sh 'echo registry= > .npmrc'
+        //         sh 'echo _authToken= >> .npmrc'
+        //         sh 'npm install basic-rest-api'
+
+        //         echo 'Running...'
+        //         sh 'cd node_modules/basic-rest-api && npm run start'
+        //     }
+        // }
     }
 }
