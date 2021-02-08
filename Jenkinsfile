@@ -1,4 +1,4 @@
-/* groovylint-disable DuplicateStringLiteral */
+/* groovylint-disable CompileStatic, DuplicateStringLiteral */
 pipeline {
     agent none
 
@@ -22,6 +22,15 @@ pipeline {
 
                     echo 'Build with npm and webpack'
                     sh './gradlew npm_run_build'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                withGradle {
+                    echo 'Run unit test'
+                    sh './gradlew npm_test'
                 }
             }
         }
@@ -53,7 +62,6 @@ pipeline {
         //         sh 'echo registry= > .npmrc'
         //         sh 'echo _authToken= >> .npmrc'
         //         sh 'npm install basic-rest-api'
-
         //         echo 'Running...'
         //         sh 'cd node_modules/basic-rest-api && npm run start'
         //     }
