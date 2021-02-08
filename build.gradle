@@ -51,7 +51,7 @@ node {
     // The Node.js project directory location
     // This is where the package.json file and node_modules directory are located
     // By default it is at the root of the current project
-    nodeProjectDir = file("${project.projectDir}")
+    // nodeProjectDir = file("${project.projectDir}")
     
     // Whether the plugin automatically should add the proxy configuration to npm and yarn commands
     // according the proxy configuration defined for Gradle
